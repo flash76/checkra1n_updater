@@ -1,11 +1,7 @@
-from distutils.version import LooseVersion
-
 from bs4 import BeautifulSoup
-from packaging import version
 import urllib.request
 import re
 import os
-import subprocess
 
 the_thing = BeautifulSoup(urllib.request.urlopen("https://checkra.in").read(), 'html.parser')
 does_checkra1n_exist = False
@@ -20,11 +16,16 @@ except FileNotFoundError:
     does_checkra1n_exist = False
 
 
+def guide_dfu():
+    print("dfu mode")
+
+
 def move_stuff():
     os.system("hdiutil mount checkra1n.dmg")
     os.system("cp -r /Volumes/checkra1n/checkra1n.app .")
     # os.system("mv Contents/ checkra1n.app")
     os.system("checkra1n.app/Contents/MacOS/checkra1n_gui -")
+    # guide_dfu()
 
 
 def update_checkrain():
